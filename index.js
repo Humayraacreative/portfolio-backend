@@ -1,4 +1,3 @@
-// index.js
 const express = require('express');
 const cors = require('cors');
 
@@ -8,6 +7,11 @@ const PORT = process.env.PORT || 3001;
 // Middleware
 app.use(cors()); // Allow requests from any origin (your frontend)
 app.use(express.json()); // Parse JSON request bodies
+
+// Homepage route (root) - hii ndio itafanya link yako ya .com ikubaliwe na Google Form
+app.get('/', (req, res) => {
+  res.send('<h1>Portfolio Backend is Live!</h1><p>This is the homepage of your API.</p>');
+});
 
 // Simple GET endpoint to test the API
 app.get('/api', (req, res) => {
@@ -20,7 +24,6 @@ app.post('/api/contact', (req, res) => {
   console.log('Received contact form submission:', { name, email, message });
   
   // In a real app, you would save this to a database or send an email here.
-  // For this assignment, we'll just send a success response.
   res.json({ status: 'success', message: 'Message received!' });
 });
 
@@ -28,3 +31,4 @@ app.post('/api/contact', (req, res) => {
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);
 });
+
